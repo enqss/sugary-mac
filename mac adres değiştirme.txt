@@ -1,0 +1,38 @@
+#!/usr/bin/env python3
+import os
+
+os.system("sudo apt-get install figlet")
+os.system("clear")
+os.system("figlet MAC DEGISTIRME")
+
+print("""
+rabbittcyber e Hos Geldiniz:)
+mac adres degistirme.
+
+1) MAC ADRESİ RANDOM BELİRLE
+2) MAC ADRESİ MANUAL BELİRLER
+3) MAC ADRESİ ESKİ HALİNE
+""")
+
+islemno = input("ISLEM NUMARASI GIRINIZ: ")
+
+if islemno == "1":
+    os.system("sudo ifconfig eth0 down")
+    os.system("sudo macchanger -r eth0")
+    os.system("sudo ifconfig eth0 up")
+    print("\033[92m YENİ MAC ADRESİ RANDOM BELIRLENDI")
+elif islemno == "2":
+    mac_adres = input("YENİ MAC ADRESİNİ GIRINIZ: ")
+    os.system("sudo ifconfig eth0 down")
+    os.system(f"sudo macchanger --mac {mac_adres} eth0")
+    os.system("sudo ifconfig eth0 up")
+    print("\033[92m YENİ MAC ADRESİ MANUAL BELIRLENDI")
+elif islemno == "3":
+    os.system("sudo ifconfig eth0 down")
+    os.system("sudo macchanger -p eth0")
+    os.system("sudo ifconfig eth0 up")
+    print("\033[92m MAC ADRESİ ESKI HALINE DONDU")
+else:
+    print("HADİ AMA DOĞRU NUMARA DEĞİL TEKRAR BAŞLATIYORUM")
+    os.system("python3 rabbit1.py")
+
